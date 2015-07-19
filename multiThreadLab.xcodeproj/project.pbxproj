@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38C4C7793334BC1AF9848338 /* libPods-multiThreadLab.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6C9C24617D9863597F3ED5 /* libPods-multiThreadLab.a */; };
 		5AD76A438F7849D78E34FA47 /* libPods-multiThreadLabTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB57F108F0C430EB165588C /* libPods-multiThreadLabTests.a */; };
 		CACE3AB319009E8D00EDD043 /* FISViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CACE3AB219009E8D00EDD043 /* FISViewControllerSpec.m */; };
 		D8298872190709A000A68C8A /* FISZipCodeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D8298870190709A000A68C8A /* FISZipCodeSpec.m */; };
@@ -42,6 +43,7 @@
 		1FB57F108F0C430EB165588C /* libPods-multiThreadLabTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-multiThreadLabTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB83FCE1BE93DD948CC1D69 /* Pods-multiThreadLabTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-multiThreadLabTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-multiThreadLabTests/Pods-multiThreadLabTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AA2B18BDAB90E09D49829CD /* Pods-multiThreadLabTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-multiThreadLabTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-multiThreadLabTests/Pods-multiThreadLabTests.release.xcconfig"; sourceTree = "<group>"; };
+		9C6C9C24617D9863597F3ED5 /* libPods-multiThreadLab.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-multiThreadLab.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49B727C094F274FE9D50A48 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CA07ECADB706C67B4B6C2918 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CA5E09DF12F14986B67E9436 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,7 @@
 				D83B028A18E078EA00F66BF5 /* UIKit.framework in Frameworks */,
 				D83B028618E078EA00F66BF5 /* Foundation.framework in Frameworks */,
 				E9033136DAE24FF1AC4ADE4D /* libPods.a in Frameworks */,
+				38C4C7793334BC1AF9848338 /* libPods-multiThreadLab.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +138,7 @@
 				D83B02A418E078EA00F66BF5 /* XCTest.framework */,
 				1FB57F108F0C430EB165588C /* libPods-multiThreadLabTests.a */,
 				CA5E09DF12F14986B67E9436 /* libPods.a */,
+				9C6C9C24617D9863597F3ED5 /* libPods-multiThreadLab.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

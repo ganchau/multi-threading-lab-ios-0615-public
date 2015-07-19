@@ -7,16 +7,22 @@
 //
 
 #import "FISViewController.h"
+#import <CHCSVParser/CHCSVParser.h>
 
-@interface FISViewController ()
+@interface FISViewController () <CHCSVParserDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *zipCode;
 @property (weak, nonatomic) IBOutlet UILabel *countyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longitudeLabel;
-- (IBAction)searchZipCodeTapped:(id)sender;
+@property (strong, nonatomic) NSMutableArray *arrayOfZipCodeColumns;
+@property (strong, nonatomic) NSOperationQueue *operationQueue;
+@property (nonatomic) BOOL zipCodeFound;
+
 @end
+
 
 @implementation FISViewController
 
@@ -34,12 +40,109 @@
     [super viewDidLoad];
     self.view.accessibilityLabel=@"Main View";
     // Do any additional setup after loading the view.
+    
+    self.operationQueue = [[NSOperationQueue alloc] init];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.25
+                                     target:self
+                                   selector:@selector(changeBackgroundColor:)
+                                   userInfo:nil
+                                    repeats:YES];
+}
+
+- (void)changeBackgroundColor:(NSTimer *)timer
+{
+    UIColor *color = [UIColor colorWithRed:arc4random_uniform(1000) / 1000.0
+                                     green:arc4random_uniform(1000) / 1000.0
+                                      blue:arc4random_uniform(1000) / 1000.0
+                                     alpha:1];
+
+    self.view.backgroundColor = color;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSString *)removeQuotes:(NSString *)string
+{
+    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+}
+
+- (IBAction)searchZipCodeButtonTapped:(id)sender
+{
+    self.zipCodeFound = NO;
+    
+    if (self.zipCode.text.length == 5) {
+        self.arrayOfZipCodeColumns = [@[] mutableCopy];
+        
+        NSBlockOperation *blockOeration = [NSBlockOperation blockOperationWithBlock:^{
+            
+            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"zip_codes_states" ofType:@"csv"];
+            NSString *contents = [NSString stringWithContentsOfURL:[NSURL fileURLWithPath:filePath] encoding:NSUTF8StringEncoding error:nil];
+            NSArray *rows = [contents componentsSeparatedByString:@"\n"];
+            
+            for (NSString *row in rows) {
+                [self.arrayOfZipCodeColumns addObject:[row componentsSeparatedByString:@","]];
+            }
+            
+            for (NSArray *column in self.arrayOfZipCodeColumns) {
+                if ([self.zipCode.text isEqualToString:[self removeQuotes:column[0]]]) {
+                    
+                    self.zipCodeFound = YES;
+                    
+                    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+                    [mainQueue addOperationWithBlock:^{
+                        self.countyLabel.text = [self removeQuotes:column[5]];
+                        self.cityLabel.text = [self removeQuotes:column[3]];
+                        self.stateLabel.text = [self removeQuotes:column[4]];
+                        self.latitudeLabel.text = column[1];
+                        self.longitudeLabel.text = [self removeQuotes:column[2]];
+                        [self.zipCode resignFirstResponder];
+                    }];
+                    
+                    break;
+                }
+            }
+            
+            NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+            [mainQueue addOperationWithBlock:^{
+                if (self.zipCodeFound == NO) {
+                    [self showAlertControllerWithMessage:@"Couldn't find that zip code"];
+                }
+
+            }];
+            
+        }];
+        
+        [self.operationQueue addOperation:blockOeration];
+
+        
+//        if (self.zipCodeFound == NO) {
+//            [self showAlertControllerWithMessage:@"Couldn't find that zip code"];
+//        }
+    
+    } else {
+        
+        [self showAlertControllerWithMessage:@"Zip Codes need to be 5 digits"];
+    }
+}
+
+- (void)showAlertControllerWithMessage:(NSString *)message
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Zip Code Error"
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *OkAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    
+    [alertController addAction:OkAction];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 /*

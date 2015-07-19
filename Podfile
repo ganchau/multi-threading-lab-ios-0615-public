@@ -2,6 +2,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 
 pod 'Swizzlean', '~> 0.1.1'
+
+pod 'CHCSVParser', '~> 2.1'
+
+
 target 'multiThreadLabTests' do
   pod 'Specta',      :git => 'https://github.com/specta/specta.git'
   pod 'Expecta',     '~> 0.2.4'
