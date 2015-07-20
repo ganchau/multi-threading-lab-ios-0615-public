@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		38C4C7793334BC1AF9848338 /* libPods-multiThreadLab.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6C9C24617D9863597F3ED5 /* libPods-multiThreadLab.a */; };
 		5AD76A438F7849D78E34FA47 /* libPods-multiThreadLabTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB57F108F0C430EB165588C /* libPods-multiThreadLabTests.a */; };
+		BDE1CBA11B5C6E80009465B5 /* FISZipCode.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE1CBA01B5C6E80009465B5 /* FISZipCode.m */; };
+		BDE1CBA41B5C6F80009465B5 /* FISZipSearchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE1CBA31B5C6F80009465B5 /* FISZipSearchOperation.m */; };
 		CACE3AB319009E8D00EDD043 /* FISViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CACE3AB219009E8D00EDD043 /* FISViewControllerSpec.m */; };
 		D8298872190709A000A68C8A /* FISZipCodeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D8298870190709A000A68C8A /* FISZipCodeSpec.m */; };
 		D83B028618E078EA00F66BF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83B028518E078EA00F66BF5 /* Foundation.framework */; };
@@ -45,6 +47,10 @@
 		6AA2B18BDAB90E09D49829CD /* Pods-multiThreadLabTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-multiThreadLabTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-multiThreadLabTests/Pods-multiThreadLabTests.release.xcconfig"; sourceTree = "<group>"; };
 		9C6C9C24617D9863597F3ED5 /* libPods-multiThreadLab.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-multiThreadLab.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49B727C094F274FE9D50A48 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BDE1CB9F1B5C6E80009465B5 /* FISZipCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISZipCode.h; sourceTree = "<group>"; };
+		BDE1CBA01B5C6E80009465B5 /* FISZipCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISZipCode.m; sourceTree = "<group>"; };
+		BDE1CBA21B5C6F80009465B5 /* FISZipSearchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISZipSearchOperation.h; sourceTree = "<group>"; };
+		BDE1CBA31B5C6F80009465B5 /* FISZipSearchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISZipSearchOperation.m; sourceTree = "<group>"; };
 		CA07ECADB706C67B4B6C2918 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CA5E09DF12F14986B67E9436 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CACE3AB219009E8D00EDD043 /* FISViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISViewControllerSpec.m; sourceTree = "<group>"; };
@@ -151,6 +157,10 @@
 				D83B029718E078EA00F66BF5 /* Main.storyboard */,
 				D83B029A18E078EA00F66BF5 /* FISViewController.h */,
 				D83B029B18E078EA00F66BF5 /* FISViewController.m */,
+				BDE1CBA21B5C6F80009465B5 /* FISZipSearchOperation.h */,
+				BDE1CBA31B5C6F80009465B5 /* FISZipSearchOperation.m */,
+				BDE1CB9F1B5C6E80009465B5 /* FISZipCode.h */,
+				BDE1CBA01B5C6E80009465B5 /* FISZipCode.m */,
 				D84D757B18E0AA980007537C /* zip_codes_states.csv */,
 				D83B029D18E078EA00F66BF5 /* Images.xcassets */,
 				D83B028C18E078EA00F66BF5 /* Supporting Files */,
@@ -356,8 +366,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D83B029C18E078EA00F66BF5 /* FISViewController.m in Sources */,
+				BDE1CBA41B5C6F80009465B5 /* FISZipSearchOperation.m in Sources */,
 				D83B029218E078EA00F66BF5 /* main.m in Sources */,
 				D83B029618E078EA00F66BF5 /* FISAppDelegate.m in Sources */,
+				BDE1CBA11B5C6E80009465B5 /* FISZipCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +497,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "multiThreadLab/multiThreadLab-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					ADVANCED,
+				);
 				INFOPLIST_FILE = "multiThreadLab/multiThreadLab-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -499,6 +516,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "multiThreadLab/multiThreadLab-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					ADVANCED,
+				);
 				INFOPLIST_FILE = "multiThreadLab/multiThreadLab-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
